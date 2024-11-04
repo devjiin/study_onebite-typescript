@@ -1,47 +1,26 @@
-// unknown 타입
-function unknownExam() {
-  let a: unknown = 1;
-  let b: unknown = "Hello";
-  let c: unknown = true;
-  let d: unknown = null;
-  let e: unknown = undefined;
+// 객체 타입간의 호환성
 
-  let unknownVar: unknown;
+type book = {
+  name: string;
+  price: number;
+};
 
-  //   let num : number = a;
-}
+type programingBook = {
+  name: string;
+  price: number;
+  skill: string;
+};
 
-// never 타입
-function neverExam() {
-  function neverFunc(): never {
-    while (true) {}
-  }
+let book: book;
+let programinBookVar: programingBook = {
+  name: "한 입 크기로 잘라먹는 리액트",
+  price: 30000,
+  skill: "reactjs",
+};
 
-  let num: number = neverFunc();
-  let str: string = neverFunc();
-  let bool: boolean = neverFunc();
+book = programinBookVar;
+// programinBookVar = book;
 
-  // let never1 : never = 10;
-  // let never2 : never = "string";
-  // let nevere : never = true;
-}
-
-// void 타입
-function voidExam() {
-  function voidFunc(): void {
-    console.log("hi");
-  }
-
-  let voidVar: void = undefined;
-}
-
-// any 타입
-function anyExam(): any {
-  let unknownVar: unknown;
-  let anyVar: any;
-  let undefinedVar: undefined;
-  let neverVar: never;
-
-  anyVar = unknownVar;
-  unknownVar = anyVar;
-}
+let book2: book = programinBookVar;
+function func(book: book) {}
+func(programinBookVar);
